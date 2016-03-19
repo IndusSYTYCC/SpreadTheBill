@@ -1,10 +1,26 @@
 /* Empty. Add your own CSS if you like */
 .bar.bar-profile {
+          //  background-image:url("img/ionic.png");
+
     background-color: #FF6600;
     height: 170px;
 }
 
+.profile{
+        background-image:url("img/ionic.png");
+}
+
+#name{
+    	position: relative;
+        right : 68px;
+        color: white;
+
+}
 .bar .profile {
+    background-image:url(../img/ingg.png);
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    background-size: 100%;
     top: 0;
     right: 0;
     left: 0;
@@ -40,4 +56,18 @@
 .nav-icon{
     color : white;
     background-color:#FF6600;
+}
+
+.menu_list .item-content, .menu_list .item {
+    background-color:#FF6600;
+    color: white;
+}
+
+.menu_list .item-content:hover, .menu_list .item:hover {
+    background-color: #FA9049;
+}
+
+.menu_list .item-content:active, .menu_list .item:active {
+    background-color: #FF1500;
+    //color: black;
 }

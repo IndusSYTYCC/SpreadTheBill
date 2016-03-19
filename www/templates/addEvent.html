@@ -32,9 +32,9 @@
         <ion-checkbox ng-model="showFriends">Friends list : </ion-checkbox>
 
         <div ng-show="showFriends">
-            <ion-radio ng-repeat=" myfriend in friends" ng-model="myfriend.id" ng-value="{{myfriend.id}}">         <h2>{{myfriend.lastname}} {{myfriend.name}} </h2></ion-radio>
+        <ion-checkbox  ng-repeat=" myfriend in friends"  name="{{myfriend.id}}" ng-value="{{myfriend.id}}">{{myfriend.lastname}} {{myfriend.name}}</ion-checkbox>
         </div>
-
+        
 
     </ion-content>
 </ion-view>

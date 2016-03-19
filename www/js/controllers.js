@@ -106,9 +106,10 @@ angular.module('starter.controllers', [])
 
         })
 
-        .controller('FriendsCtrl', function ($scope) {
+        .controller('FriendsCtrl', function ($scope,$http) {
             $scope.friends = [
                 {id: 1, lastname: 'Dupont', name: 'Thibaud'},
                 {id: 2, title: 'Leclerc', name: 'Arnauld'}
             ];
+          
         })
