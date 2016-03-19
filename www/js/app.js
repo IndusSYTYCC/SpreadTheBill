@@ -106,6 +106,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                                 templateUrl: 'templates/Settings.html'
                             }
                         }
+                    })
+                    
+                    .state('app.eventNotif',{
+                        url: '/eventNotif',
+                        views:{
+                            'menuContent':{
+                                templateUrl: 'templates/eventNotif.html',
+                                controllers: 'EventCtrl'
+                            }
+                        }
                     });
             // if none of the above states are matched, use this as the fallback
             $urlRouterProvider.otherwise('/app/Home');

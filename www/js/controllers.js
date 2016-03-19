@@ -71,13 +71,12 @@ angular.module('starter.controllers', [])
 
             $scope.addEvent = function () {
                 $location.path('/app/addEvent');
-
-
             }
             $scope.confirmEvent = function () {
                 $location.path('/app/confirmEvent');
-
-
+            }
+            $scopte.eventNotif = function () {
+                $location.path('/app/eventNotif');
             }
 
             $scope.insertEvent = function () {
@@ -177,11 +176,13 @@ angular.module('starter.controllers', [])
                     VALUES (?,?,?)";
                 $cordovaSQLite.execute(db, query, [account.AccountId, account.AccountId, account.Balance]).then(function (res) {
                 }, function (err) {
+                    alert('erreur 1');
                 });
                 var query2 = "INSERT INTO FRIENDS (ACCOUNT_ID,FRIEND_ACCOUNT)\n\
                     VALUES (0,(SELECT MAX(ACCOUNT_ID) FROM ACCOUNT))";
                 $cordovaSQLite.execute(db, query2, []).then(function (res) {
                 }, function (err) {
+                    alert('erreur 2');
                 });
             }
 
