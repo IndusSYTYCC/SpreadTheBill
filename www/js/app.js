@@ -1,4 +1,4 @@
-
+var db;
 angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
         .run(function ($ionicPlatform, $cordovaSQLite) {

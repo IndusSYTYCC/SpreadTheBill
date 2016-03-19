@@ -134,17 +134,21 @@ angular.module('starter.controllers', [])
         })
 
 
-        .controller('FriendsCtrl', function ($scope) {
+        .controller('FriendsCtrl', function ($scope, $http) {
             $scope.friends = [
                 {id: 1, lastname: 'Dupont', name: 'Thibaud'},
                 {id: 2, title: 'Leclerc', name: 'Arnauld'}
             ];
-                $http({method: 'GET', url: 'http://ingsytycc.azurewebsites.net/odata/Accounts'})
+            $scope.donner = [];
+            $http({method: 'GET', url: 'http://ingsytycc.azurewebsites.net/odata/Accounts'})
                     .success(function (data, status, headers, config) {
-                        return data;
+                        $scope.donner = data.value;
+                console.log($scope.donner);
                     })
                     .error(function (data, status, headers, config) {
                         return {"status": false};
                     });
+                    
+            
         })
 
