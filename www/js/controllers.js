@@ -41,13 +41,70 @@ angular.module('starter.controllers', [])
             };
         })
 
-        .controller('EventCtrl', function ($scope, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
+        .controller('EventCtrl', function ($scope, $cordovaSQLite, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
+            $scope.data = {};
+            $scope.connect = function () {
+                var myPopup = $ionicPopup.show({
+                    template: 'Entrez votre login <input type="text" ng-model="data.userLogin">   <br> Entrez votre mot de passe  <input type="password" ng-model="data.Password" > ',
+                    title: 'Connexion : ',
+                    scope: $scope,
+                    buttons: [
+                        {text: 'Cancel'}, {
+                            text: '<b>Save</b>',
+                            type: 'button-positive',
+                            onTap: function (e) {
+                                if (!$scope.data.userLogin) {
+                                    e.preventDefault();
+                                } else {
+                                    return $scope.data;
+                                }
+                            }
+                        }
+                    ]
+                });
+                myPopup.then(function (res) {
+                    if (res.userLogin == 'admin' && res.Password == 'admin') {
+                        console.log('Password is ok');
+                        $scope.data.userLogin = '';
+                        $scope.data.Password = '';
+                        $scope.ouvrirMenu();
+                    } else {
+                        console.log('Password erreur');
+                        $scope.data.userLogin = '';
+                        $scope.data.Password = '';
+                    }
+                })
+            }
+            //$scope.connect(); permet de run le mot de passe
+            
             $scope.Event = {};
             $scope.events = [];
             $scope.friends = [
                 {id: 1, lastname: 'Dupont', name: 'Thibaud'},
-                {id: 2, title: 'Leclerc', name: 'Arnauld'}
+                {id: 2, lastname: 'Leclerc', name: 'Arnauld'}
             ];
+
+
+            $scope.refrechFriends = function () {
+                /*$ionicPlatform.ready(function () {*/
+                db.transaction(function (tx) {
+                    tx.executeSql('SELECT * FROM FRIENDS JOIN ACCOUNT WHERE FRIENDS.ACCOUNT_ID = 0 AND FRIENDS.FRIEND_ACCOUNT = ACCOUNT.ACCOUNT_ID', [], function (tx, results) {
+                        var len = results.rows.length;
+                        for (var i = 0; i < len; i++) {
+                            $scope.friends.push({
+                                id: results.rows.item(i).ACCOUNT_ID,
+                                lastname: results.rows.item(i).LASTNAME,
+                                name: results.rows.item(i).NAME,
+                                balance: results.rows.item(i).BALANCE
+                            });
+                            $scope.$apply();
+                        }
+                    });
+                })
+                $scope.friends = [];
+                /*})*/
+            }
+            $scope.refrechFriends();
 
             $scope.addEvent = function () {
                 $location.path('/app/addEvent');
@@ -158,21 +215,36 @@ angular.module('starter.controllers', [])
         })
 
 
-        .controller('FriendsCtrl', function ($scope, $http) {
+        .controller('FriendsCtrl', function ($scope, $cordovaSQLite, $http) {
             $scope.friends = [
                 {id: 1, lastname: 'Dupont', name: 'Thibaud'},
                 {id: 2, title: 'Leclerc', name: 'Arnauld'}
             ];
             $scope.donner = [];
+
+
+
             $http({method: 'GET', url: 'http://ingsytycc.azurewebsites.net/odata/Accounts'})
                     .success(function (data, status, headers, config) {
                         $scope.donner = data.value;
-                console.log($scope.donner);
+                        console.log($scope.donner);
                     })
                     .error(function (data, status, headers, config) {
                         return {"status": false};
                     });
-                    
-            
+            $scope.addFriend = function (account) {
+
+                var query = "INSERT INTO ACCOUNT (NAME,LASTNAME,BALANCE)\n\
+                    VALUES (?,?,?)";
+                $cordovaSQLite.execute(db, query, [account.AccountId, account.AccountId, account.Balance]).then(function (res) {
+                }, function (err) {
+                });
+                var query2 = "INSERT INTO FRIENDS (ACCOUNT_ID,FRIEND_ACCOUNT)\n\
+                    VALUES (0,(SELECT MAX(ACCOUNT_ID) FROM ACCOUNT))";
+                $cordovaSQLite.execute(db, query2, []).then(function (res) {
+                }, function (err) {
+                });
+            }
+
         })
 

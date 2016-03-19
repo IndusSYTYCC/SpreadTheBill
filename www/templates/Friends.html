@@ -1,10 +1,14 @@
 <ion-view view-title="Friends" ng-controller="FriendsCtrl">
     <ion-content>
         <ion-list>
-            <ion-item ng-repeat=" myd in donner">
+           
+            <label class="item item-input">
+                <input ng-model="searchText">
+            </label>
+            <ion-item ng-repeat=" myd in donner| filter:searchText">
                 <h2>{{myd.AccountId}}  : {{myd.Balance}} €</h2>
                 <ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>
-                <ion-option-button class="button-energized icon ion-edit"></ion-option-button>
+                <ion-option-button ng-click="addFriend(myd)" class="button-positive icon ion-plus-circled"></ion-option-button>
             </ion-item>
         </ion-list>
     </ion-content>
