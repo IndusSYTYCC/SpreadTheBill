@@ -54,7 +54,11 @@ angular.module('starter.controllers', [])
             
             
             }
+            $scope.confirmEvent = function () {
+            $location.path('/app/confirmEvent');
             
+            
+            }
             
             $scope.insertEvent = function () {
                 var query = "INSERT INTO EVENTS (NAME,DESCRIPTION,PLACE,OWNER,FRIENDS,SOLDE)\n\
