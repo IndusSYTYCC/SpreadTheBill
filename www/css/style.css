@@ -71,3 +71,48 @@
     background-color: #FF1500;
     //color: black;
 }
+
+#account_label{
+    //font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+}
+
+#account_h1{
+    font-weight: bold;
+    font-family: Lobster, "Times New Roman", Times, serif;
+    // text-shadow: 0px 1px 1px white, 5px 5px 10px #FF6600;
+    color:#FF6600;
+    border:#000;
+    //text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
+    justify-content: space-between;
+    font-size: 50px;      
+}
+
+#settings_label{
+    //font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+}
+
+#settings_h1{
+    font-weight: bold;
+    font-family: Lobster, "Times New Roman", Times, serif;
+    // text-shadow: 0px 1px 1px white, 5px 5px 10px #FF6600;
+    color:#FF6600;
+    border:#000;
+    //text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
+    justify-content: space-between;
+    font-size: 50px;      
+}
+
+#bt_log{
+    color:white; 
+    background-color: #FA9049;
+
+}
+
+#bt_pass{
+    color:white; 
+    background-color: #FA9049;
+
+}
+
