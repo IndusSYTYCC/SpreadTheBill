@@ -139,5 +139,16 @@ angular.module('starter.controllers', [])
                 {id: 1, lastname: 'Dupont', name: 'Thibaud'},
                 {id: 2, title: 'Leclerc', name: 'Arnauld'}
             ];
+            $scope.donner = [];
+            $http({method: 'GET', url: 'http://ingsytycc.azurewebsites.net/odata/Accounts'})
+                    .success(function (data, status, headers, config) {
+                        $scope.donner = data.value;
+                console.log($scope.donner);
+                    })
+                    .error(function (data, status, headers, config) {
+                        return {"status": false};
+                    });
+                    
+            
         })
 
