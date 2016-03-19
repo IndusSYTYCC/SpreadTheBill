@@ -12,8 +12,9 @@ var eventsQuery = "CREATE TABLE EVENTS( \n\
         );";
 var accountQuery = "CREATE TABLE ACCOUNT( \n\
         ACCOUNT_ID INTEGER PRIMARY KEY AUTOINCREMENT, \n\
-        FRIEND_ID INTEGER,\n\
-        BALANCE INTEGER \n\
+        BALANCE INTEGER, \n\
+        NAME TEXT,\n\
+        LASTNAME TEXT\n\
         );";
 var friendsQuery = "CREATE TABLE FRIENDS(\n\
      FRIENDS_ID INTEGER PRIMARY KEY AUTOINCREMENT,\n\
