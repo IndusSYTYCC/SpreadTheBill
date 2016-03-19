@@ -1,0 +1,40 @@
+<ion-view cache-view="false" view-title="Add Event" ng-controller="EventCtrl">
+    <ion-nav-bar class="nav-bar">
+        <ion-nav-back-button class="button nav-icon">
+            Event
+        </ion-nav-back-button> 
+    </ion-nav-bar>
+    
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-checkmark-round nav-icon" ng-click="insertEvent()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+
+        <label class="item item-input">
+            Name :
+            <input type="text" ng-model="Event.name" placeholder="   event name ..."/>
+        </label>  
+
+        <label class="item item-input">
+            Place : 
+            <input type="text" ng-model="Event.place" placeholder="   event place ..."/>
+        </label>
+        <label class="item item-input">
+            Description : 
+            <input type="text" ng-model="Event.description" placeholder="   event description ..."/>
+        </label>
+        <label class="item item-input">
+            Sold :
+            <input type="number" ng-model="Event.solde" value ="0"/>
+        </label>
+
+        <ion-checkbox ng-model="showFriends">Friends list : </ion-checkbox>
+
+        <div ng-show="showFriends">
+            <ion-radio ng-repeat=" myfriend in friends" ng-model="myfriend.id" ng-value="{{myfriend.id}}">         <h2>{{myfriend.lastname}} {{myfriend.name}} </h2></ion-radio>
+        </div>
+
+
+    </ion-content>
+</ion-view>

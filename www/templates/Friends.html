@@ -1,0 +1,11 @@
+<ion-view view-title="Friends" ng-controller="FriendsCtrl">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat=" myfriend in friends">
+                <h2>{{myfriend.lastname}} {{myfriend.name}} </h2>
+                <ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>
+                <ion-option-button class="button-energized icon ion-edit"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,28 @@
+<ion-view cache-view="false" view-title="Event" ng-controller="EventCtrl">
+    <ion-nav-bar class="nav-bar">
+        
+        <ion-nav-buttons side="left">
+            <button class="button button-icon ion-navicon nav-icon" menu-toggle="left">
+            </button>
+            
+        </ion-nav-buttons>
+        
+        <ion-nav-buttons side="right">
+            <button class="button button-icon ion-plus nav-icon" ng-click="addEvent()">
+            </button>
+        </ion-nav-buttons>
+       
+    
+    <ion-content>
+        
+        <ion-list>
+            <ion-item ng-repeat=" myevent in events">
+                <h2> Event : {{myevent.title}}  </h2>  <h3> {{myevent.description}} </h3>
+                <ion-option-button ng-click="deleteEvent(myevent.id)" class="button-assertive icon ion-trash-a"></ion-option-button>
+                <ion-option-button class="button-energized icon ion-edit"></ion-option-button>
+            </ion-item>
+        </ion-list>
+        
+    </ion-content>
+</ion-view>
+
