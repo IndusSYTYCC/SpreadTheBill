@@ -46,7 +46,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                         }
                     })
                     .state('app.confirmEvent', {
-                        url: '/templates/confirmEvent.html',
+                        url: '/confirmEvent',
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/confirmEvent.html',
