@@ -128,22 +128,10 @@ angular.module('starter.controllers', [])
 })
 
 
-<<<<<<< Upstream, based on origin/master
-
-        })
-
-        .controller('FriendsCtrl', function ($scope,$http) {
-            $scope.friends = [
-                {id: 1, lastname: 'Dupont', name: 'Thibaud'},
-                {id: 2, title: 'Leclerc', name: 'Arnauld'}
-            ];
-          
-        })
-=======
 .controller('FriendsCtrl', function ($scope) {
     $scope.friends = [
         {id: 1, lastname: 'Dupont', name: 'Thibaud'},
         {id: 2, title: 'Leclerc', name: 'Arnauld'}
     ];
 })
->>>>>>> ffd0819 Adding camera
+
