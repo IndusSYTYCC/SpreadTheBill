@@ -150,6 +150,30 @@ angular.module('starter.controllers', [])
                 });
             }
 
+            function GetIdentity(imageUri) {
+                var params = {
+                    subscriptionkey: '4cef9e19e86a4be4ac471bb58c1cf9ca',
+                    analyzesAge: "true",
+                    analyzesGender: "true",
+                    analyzesSmile: "true",
+                };
+ 
+                var uploadURI = 'https://api.projectoxford.ai/face/v0/detections?' + $.param(params);
+                var imageURI = imageUri; // the retrieved URI of the file on the file system, e.g. using navigator.camera.getPicture()     
+ 
+                var options = new FileUploadOptions();
+                options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+                options.mimeType = "application/octet-stream";
+                // options.headers = {}; // use this if you need additional headers
+ 
+                var ft = new FileTransfer();
+                ft.upload(imageURI, uploadURI, function(r) {
+                alert(JSON.stringify(r));
+                }, function(error) {
+                    alert("An error has occurred:" + JSON.stringify(error));
+                }, options)
+            }
+
         })
 
 
