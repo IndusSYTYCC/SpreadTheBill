@@ -19,14 +19,30 @@ angular.module('starter.controllers', ['chart.js'])
         })
 
         .controller('EventCtrl', function ($http, $scope, $cordovaSQLite, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
+            $scope.showConfirm = function (smile) {
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'Event Confirmation',
+                    template: smile
+                });
+
+                confirmPopup.then(function (res) {
+                    if (res) {
+                        console.log('You are sure');
+                    } else {
+                        console.log('You are not sure');
+                    }
+                });
+            };
+
             $scope.confirmPhoto = function (path) {
+                //pour utilisée avec telephone, il faut changer l'url par (path)
                 $http({
                     'url': "https://api.projectoxford.ai/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,smile",
                     'dataType': "json",
                     'host': "api.projectoxford.ai",
                     'method': "POST",
                     'data': {
-                        "url": "https://www.whitehouse.gov/sites/whitehouse.gov/files/images/first-family/44_barack_obama%5B1%5D.jpg"
+                        "url": path
                     },
                     headers: {
                         "Content-Type": "application/json",
@@ -35,13 +51,21 @@ angular.module('starter.controllers', ['chart.js'])
 
                 }).success(function (response) {
                     $scope.response = response;
-                    console.log($scope.response[0].faceAttributes.smile);
+
+                    var tauxDeSatisfaction = $scope.response[0].faceAttributes.smile * 100;
+                    console.log(tauxDeSatisfaction);
+                    if (tauxDeSatisfaction > 30) {
+                        $scope.showConfirm('You smile');
+                    } else {
+                        $scope.showConfirm('You are sad');
+                    }
+
+
                 }).error(function (error) {
                     $scope.error = error;
                 });
             }
-            
-            $scope.confirmPhoto();
+
             $scope.data = {};
             $scope.labels = ["6PM", "7PM", "8PM", "9PM", "10PM", "11PM"];
             $scope.data = [
@@ -190,6 +214,10 @@ angular.module('starter.controllers', ['chart.js'])
             $scope.refrechEvents();
 
 
+            $scope.idPhoto = 0;
+            $scope.urls = [{id: 0, url: "http://imagesmtv-a.akamaihd.net/uri/mgid:ao:image:mtv.com:27361?quality=0.8&format=jpg&width=300&height=300&matte=true&matteColor=0xd9d9d9"},
+                {id: 1, url: "http://img2.rnkr-static.com/list_img/18858/298858/C300/bill-clinton-isms-bill-clinton-gaffes-and-funny-quotes.jpg"}];
+
             $scope.takePicture = function () {
                 var options = {
                     quality: 75,
@@ -203,37 +231,18 @@ angular.module('starter.controllers', ['chart.js'])
                     saveToPhotoAlbum: false
                 };
 
+
+                $scope.idPhoto = ($scope.idPhoto + 1) % 2;
+
                 $cordovaCamera.getPicture(options).then(function (imageData) {
-                    $scope.imgURI = "data:image/jpeg;base64," + imageData;
+                    //$scope.imgURI = "data:image/jpeg;base64," + imageData;
+                    $scope.imgURI = $scope.urls[$scope.idPhoto].url;
                     $scope.confirmPhoto($scope.imgURI);
                 }, function (err) {
                     // An error occured. Show a message to the user
                 });
             }
 
-            function GetIdentity(imageUri) {
-                var params = {
-                    subscriptionkey: '4cef9e19e86a4be4ac471bb58c1cf9ca',
-                    analyzesAge: "true",
-                    analyzesGender: "true",
-                    analyzesSmile: "true"
-                };
-
-                var uploadURI = 'https://api.projectoxford.ai/face/v0/detections?' + $.param(params);
-                var imageURI = imageUri; // the retrieved URI of the file on the file system, e.g. using navigator.camera.getPicture()     
-
-                var options = new FileUploadOptions();
-                options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-                options.mimeType = "application/octet-stream";
-                // options.headers = {}; // use this if you need additional headers
-
-                var ft = new FileTransfer();
-                ft.upload(imageURI, uploadURI, function (r) {
-                    alert(JSON.stringify(r));
-                }, function (error) {
-                    alert("An error has occurred:" + JSON.stringify(error));
-                }, options)
-            }
 
         })
 
