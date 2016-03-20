@@ -44,10 +44,7 @@ angular.module('starter.controllers', [])
 
             $scope.Event = {};
             $scope.events = [];
-            $scope.friends = [
-                {id: 1, lastname: 'Dupont', name: 'Thibaud'},
-                {id: 2, lastname: 'Leclerc', name: 'Arnauld'}
-            ];
+            $scope.friends = [];
 
 
             $scope.refrechFriends = function () {
@@ -74,7 +71,29 @@ angular.module('starter.controllers', [])
             $scope.addEvent = function () {
                 $location.path('/app/addEvent');
             }
+            $scope.MaxEvent = function () {
+                /*$ionicPlatform.ready(function () {*/
+                db.transaction(function (tx) {
+                    tx.executeSql('SELECT * FROM EVENTS WHERE EVENT_ID = (SELECT MAX(EVENT_ID) FROM EVENTS)', [], function (tx, results) {
+                        var len = results.rows.length;
+                        for (var i = 0; i < len; i++) {
+                            $scope.varA = results.rows.item(i).NAME;
+                            $scope.varB = results.rows.item(i).PLACE;
+                            $scope.varC = results.rows.item(i).DESCRIPTION;
+                            $scope.varD = results.rows.item(i).SOLDE;
+                            $scope.$apply();
+                        }
+                    });
+                })
+            }
+            $scope.sendEvent = function () {
+                $location.path('/app/Event');
+
+            }
+            $scope.MaxEvent();
+
             $scope.confirmEvent = function () {
+                $scope.insertEvent();
                 $location.path('/app/confirmEvent');
             }
 
@@ -85,7 +104,6 @@ angular.module('starter.controllers', [])
                 $cordovaSQLite.execute(db, query, [$scope.Event.name, $scope.Event.description, $scope.Event.place, 0, 0, $scope.Event.solde]).then(function (res) {
                 }, function (err) {
                 });
-                $location.path('/app/Event');
                 $scope.refrechEvents();
             }
 
