@@ -14,9 +14,9 @@
        
     
     <ion-content>
-        
+               
         <ion-list>
-            <ion-item ng-repeat=" myevent in events">
+            <ion-item ng-repeat=" myevent in events" ng-click="eventDetails()">
                 <h2> Event : {{myevent.title}}  </h2>  <h3> {{myevent.description}} </h3>
                 <ion-option-button ng-click="deleteEvent(myevent.id)" class="button-assertive icon ion-trash-a"></ion-option-button>
                 <ion-option-button class="button-energized icon ion-edit"></ion-option-button>

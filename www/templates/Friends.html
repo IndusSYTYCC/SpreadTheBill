@@ -1,9 +1,9 @@
-<ion-view view-title="Friends" ng-controller="FriendsCtrl">
+<ion-view cache-view="false" view-title="Friends" ng-controller="FriendsCtrl">
     <ion-content>
         <ion-list>
            
             <label class="item item-input">
-                <input ng-model="searchText">
+                <input id="entry_search" ng-model="searchText">
             </label>
             <ion-item ng-repeat=" myd in donner| filter:searchText">
                 <h2>{{myd.AccountId}}  : {{myd.Balance}} €</h2>

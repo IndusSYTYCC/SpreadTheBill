@@ -21,8 +21,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                 $cordovaSQLite.execute(db, eventsQuery);
                 $cordovaSQLite.execute(db, accountQuery);
                 $cordovaSQLite.execute(db, friendsQuery);
-
-
             });
         })
 
@@ -98,7 +96,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                             }
                         }
                     })
-
+                    .state('app.eventDetails', {
+                        url: '/eventDetails',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/eventDetails.html',
+                                controllers: 'EventCtrl'
+                            }
+                        }
+                    })
                     .state('app.Settings', {
                         url: '/Settings',
                         views: {
@@ -107,11 +113,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                             }
                         }
                     })
-                    
-                    .state('app.eventNotif',{
+
+                    .state('app.eventNotif', {
                         url: '/eventNotif',
-                        views:{
-                            'menuContent':{
+                        views: {
+                            'menuContent': {
                                 templateUrl: 'templates/eventNotif.html',
                                 controllers: 'EventCtrl'
                             }
