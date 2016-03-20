@@ -1,7 +1,9 @@
 angular.module('starter.controllers', [])
 
-        .controller('AppCtrl', function ($scope) {
-
+        .controller('AppCtrl', function ($scope, $location) {
+            $scope.eventNotif = function () {
+                $location.path('/app/eventNotif');
+            }
         })
 
         .controller('EventCtrl', function ($scope, $cordovaSQLite, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
@@ -39,7 +41,7 @@ angular.module('starter.controllers', [])
                 })
             }
             //$scope.connect(); permet de run le mot de passe
-            
+
             $scope.Event = {};
             $scope.events = [];
             $scope.friends = [
@@ -75,9 +77,7 @@ angular.module('starter.controllers', [])
             $scope.confirmEvent = function () {
                 $location.path('/app/confirmEvent');
             }
-            $scope.eventNotif = function () {
-                $location.path('/app/eventNotif');
-            }
+
 
             $scope.insertEvent = function () {
                 var query = "INSERT INTO EVENTS (NAME,DESCRIPTION,PLACE,OWNER,FRIENDS,SOLDE)\n\
@@ -157,19 +157,19 @@ angular.module('starter.controllers', [])
                     analyzesGender: "true",
                     analyzesSmile: "true",
                 };
- 
+
                 var uploadURI = 'https://api.projectoxford.ai/face/v0/detections?' + $.param(params);
                 var imageURI = imageUri; // the retrieved URI of the file on the file system, e.g. using navigator.camera.getPicture()     
- 
+
                 var options = new FileUploadOptions();
                 options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
                 options.mimeType = "application/octet-stream";
                 // options.headers = {}; // use this if you need additional headers
- 
+
                 var ft = new FileTransfer();
-                ft.upload(imageURI, uploadURI, function(r) {
-                alert(JSON.stringify(r));
-                }, function(error) {
+                ft.upload(imageURI, uploadURI, function (r) {
+                    alert(JSON.stringify(r));
+                }, function (error) {
                     alert("An error has occurred:" + JSON.stringify(error));
                 }, options)
             }
