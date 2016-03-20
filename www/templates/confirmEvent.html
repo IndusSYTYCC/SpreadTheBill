@@ -1,16 +1,16 @@
 <ion-view cache-view="false" view-title="Confirm Event" ng-controller="EventCtrl">
- 
+
     <ion-nav-bar class="nav-bar">
         <ion-nav-back-button class="button nav-icon">
             Event
         </ion-nav-back-button> 
     </ion-nav-bar>
-    
+
     <ion-nav-buttons side="right">
-        <button class="button button-icon ion-checkmark-round nav-icon" ng-click="insertEvent()">
+        <button class="button button-icon ion-checkmark-round nav-icon" ng-click="sendEvent()">
         </button>
     </ion-nav-buttons>
-    
+
     <ion-content>
 
         <div class="card">
@@ -18,16 +18,23 @@
                 Event overview
             </div>
             <div class="item item-text-wrap">
-                
+                <div>Name : {{varA}}</div>
+                <div>Place : {{varB}} </div>
+                <div>Description : {{varC}} </div>
+                <div>Sold per person : {{varD}} € </div>
             </div>
         </div>
-        
-        
+
+
         <div class="card">
             <div class="item item-text-wrap">
                 <h2>Make a big smile for confirmation ! :D</h2>
             </div>
         </div>
+        
+        <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" class="img-rounded center-block">
+        <img ng-show="imgURI === undefined" ng-src="img/image_empty.jpg" class="img-rounded center-block">
+        <button class="button nav-bar button-block" ng-click="takePicture()">Take Picture</button>
 
     </ion-content>    
 </ion-view>

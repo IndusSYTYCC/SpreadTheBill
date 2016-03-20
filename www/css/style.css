@@ -65,6 +65,12 @@
     background-color:#FF6600;
 }
 
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .menu_list .item-content, .menu_list .item {
     background-color:#FA9049;
     color: white;

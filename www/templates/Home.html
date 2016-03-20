@@ -1,4 +1,4 @@
-<ion-view view-title="Home">
+<ion-view view-title="Home" ng-controller="AppCtrl">
     <ion-content>
 
         <div class="bar bar-header bar-light">
@@ -29,6 +29,11 @@
                     Event 3 - 7 members - 200€
                 </div>
             </div>
+        </div>
+        <div class="row responsive-sm col">
+            <button class="button button-postitive" ng-click="eventNotif()">
+                Notif
+            </button>
         </div>
     </ion-content>
 </ion-view>
