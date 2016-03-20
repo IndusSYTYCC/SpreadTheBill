@@ -3,7 +3,7 @@
         <ion-list>
            
             <label class="item item-input">
-                <input ng-model="searchText">
+                <input id="entry_search" ng-model="searchText">
             </label>
             <ion-item ng-repeat=" myd in donner| filter:searchText">
                 <h2>{{myd.AccountId}}  : {{myd.Balance}} €</h2>
