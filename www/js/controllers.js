@@ -75,7 +75,7 @@ angular.module('starter.controllers', [])
             $scope.confirmEvent = function () {
                 $location.path('/app/confirmEvent');
             }
-            $scopte.eventNotif = function () {
+            $scope.eventNotif = function () {
                 $location.path('/app/eventNotif');
             }
 
