@@ -19,14 +19,14 @@ angular.module('starter.controllers', ['chart.js'])
         })
 
         .controller('EventCtrl', function ($http, $scope, $cordovaSQLite, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
-            $scope.confirmPhoto = function(path){
+            $scope.confirmPhoto = function (path) {
                 $http({
                     'url': "https://api.projectoxford.ai/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,smile",
                     'dataType': "json",
                     'host': "api.projectoxford.ai",
                     'method': "POST",
                     'data': {
-                        "url": path
+                        "url": "https://www.whitehouse.gov/sites/whitehouse.gov/files/images/first-family/44_barack_obama%5B1%5D.jpg"
                     },
                     headers: {
                         "Content-Type": "application/json",
@@ -40,6 +40,8 @@ angular.module('starter.controllers', ['chart.js'])
                     $scope.error = error;
                 });
             }
+            
+            $scope.confirmPhoto();
             $scope.data = {};
             $scope.labels = ["6PM", "7PM", "8PM", "9PM", "10PM", "11PM"];
             $scope.data = [
@@ -271,3 +273,21 @@ angular.module('starter.controllers', ['chart.js'])
 
         })
 
+        .controller('SettingsCtrl', function ($scope, $ionicPopup, $cordovaSQLite, $http) {
+            $scope.changePass = function () {
+                var myPopup = $ionicPopup.show({
+                    template: 'Entrer your password <input type="password">   <br> Enter new password  <input type="password"  <br> Confirm new password  <input type="password" > ',
+                    title: 'Change password : ',
+                    scope: $scope,
+                    buttons: [
+                        {text: 'Cancel'}, {
+                            text: '<b>Save</b>',
+                            type: 'button-positive',
+                            onTap: function (e) {
+                                return false;
+                            }
+                        }
+                    ]
+                });
+            }
+        })

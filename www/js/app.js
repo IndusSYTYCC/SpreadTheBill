@@ -109,7 +109,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                         url: '/Settings',
                         views: {
                             'menuContent': {
-                                templateUrl: 'templates/Settings.html'
+                                templateUrl: 'templates/Settings.html',
+                                controllers:'SettingsCtrl'
                             }
                         }
                     })

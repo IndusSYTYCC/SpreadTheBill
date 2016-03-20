@@ -1,19 +1,20 @@
-<ion-view view-title="Settings">
-    
-    <ion-content>
-        <h1 id="settings_h1"> Your Settings Information</h1>
-        <div id="settings_label">
-        <label> Login: Bobo </label>
-        <button id="bt_log" class="button button-small  button-calm center">
-Modify
-        </button>
-        <label> <br/> Pass : ************ </label>
-        <button id="bt_pass" class="button button-small  button-calm center">
-Modify
-        </button>
-        
-        <div/>
-        </ion-content>
+<ion-view view-title="Settings" ng-controller="SettingsCtrl">
 
-    
+    <ion-content>
+
+        <ion-list>
+            <ion-item>
+                Login: Bobo
+            </ion-item>
+            <ion-item>
+                Pass : **********
+            </ion-item>
+            <button class="button button-positive" ng-click="changePass()">
+                Change Password
+            </button>
+        </ion-list>
+
+    </ion-content>
+
+
 </ion-view>
