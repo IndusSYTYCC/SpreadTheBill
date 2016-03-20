@@ -21,7 +21,9 @@
 
 }
 .bar .profile {
-    background-image:url(../img/ingg.png);
+   // background-image:url(../img/logo_lion.png);
+      //      background-color: white;
+
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     background-size: 100%;
@@ -36,6 +38,7 @@
     width: 100%;
     padding-top: 15px;
 }
+
 
 .profile .name {
     color: #FFFFFF;
@@ -63,7 +66,7 @@
 }
 
 .menu_list .item-content, .menu_list .item {
-    background-color:#FF6600;
+    background-color:#FA9049;
     color: white;
 }
 
@@ -72,7 +75,9 @@
 }
 
 .menu_list .item-content:active, .menu_list .item:active {
-    background-color: #FF1500;
+        font-size:x-large;
+
+    //background-color: #FF1500;
     //color: black;
 }
 
@@ -120,3 +125,47 @@
 
 }
 
+#hello {
+    color: white;
+    font-style: italic;
+}
+
+#hello:hover{
+    font-size:xx-large;
+    font-style: oblique;
+}
+
+.bar.bar-light{
+    background-color:rgb(251,109,0);
+
+}
+
+.item-divider{
+    color:white;
+    background-color: #FA9049;
+    border-color: #FA9049;
+}
+
+
+.scroll{
+    background-image:url(../img/lion2.jpg);
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color:rgb(212, 86, 1)
+}
+
+.item-icon-left{
+    //color: white;
+    background-color: transparent;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.item-text-wrap{
+        font-family: Lobster, "Times New Roman", Times, serif;
+        color: #FA9049;
+}

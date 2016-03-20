@@ -15,6 +15,10 @@
     
     <ion-content>
         
+        <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center">
+            <img ng-show="imgURI === undefined" ng-src="img/ionic.png" style="text-align: center">
+                <button class="button button-positive button-block" ng-click="takePicture()">Take Picture</button>
+        
         <ion-list>
             <ion-item ng-repeat=" myevent in events">
                 <h2> Event : {{myevent.title}}  </h2>  <h3> {{myevent.description}} </h3>
