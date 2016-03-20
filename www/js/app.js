@@ -101,7 +101,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/eventDetails.html',
-                                controllers: 'EventCtrl'
+                                controllers: 'EventDetCtrl'
                             }
                         }
                     })

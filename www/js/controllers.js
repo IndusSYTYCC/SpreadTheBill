@@ -6,17 +6,19 @@ angular.module('starter.controllers', ['chart.js'])
             }
         })
 
-        
+        .controller('EventDetCtrl', function ($http, $scope, $cordovaSQLite, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
+            $scope.transaction = [];
+            $http({method: 'GET', url: "https://ingsytycc.azurewebsites.net/odata/AccountTransactions?$filter=PartyId eq '56f39c0d889d4f701e04221fc3c0ee9625e2cbac1ff574f712df8fe2957f7859'"})
+                    .success(function (data, status, headers, config) {
+                        $scope.transaction = data.value;
+                        console.log($scope.transaction);
+                    })
+                    .error(function (data, status, headers, config) {
+                        return {"status": false};
+                    });
+        })
 
-
-.controller('EventCtrl', function ($http, $scope, $cordovaSQLite, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
-            var string = "http://www.ulyces.co/wp-content/uploads/2015/03/Barack_Obama_official_photo_portrait_111th_Congress-256x256.jpg";
-            var params = {
-                // Request parameters
-                "returnFaceId": "true",
-                "returnFaceLandmarks": "false",
-                "returnFaceAttributes": "{string}",
-            };
+        .controller('EventCtrl', function ($http, $scope, $cordovaSQLite, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
 
             $http({
                 'url': "https://api.projectoxford.ai/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age",
@@ -36,7 +38,7 @@ angular.module('starter.controllers', ['chart.js'])
             }).error(function (error) {
                 $scope.error = error;
             });
-            
+
             $scope.data = {};
             $scope.labels = ["6PM", "7PM", "8PM", "9PM", "10PM", "11PM"];
             $scope.data = [
@@ -81,16 +83,6 @@ angular.module('starter.controllers', ['chart.js'])
             $scope.friends = [];
 
             $scope.eventDetails = function () {
-                $scope.transaction = [];
-                
-                $http({method: 'GET', url: "https://ingsytycc.azurewebsites.net/odata/AccountTransactions?$filter=PartyId eq '56f39c0d889d4f701e04221fc3c0ee9625e2cbac1ff574f712df8fe2957f7859'"})
-                    .success(function (data, status, headers, config) {
-                        $scope.transaction = data.value;
-                        console.log($scope.transaction);
-                    })
-                    .error(function (data, status, headers, config) {
-                        return {"status": false};
-                    });
                 $location.path('/app/eventDetails');
             }
 
@@ -251,7 +243,7 @@ angular.module('starter.controllers', ['chart.js'])
 
 
 
-            $http({method: 'GET', url: 'http://ingsytycc.azurewebsites.net/odata/Accounts'})
+            $http({method: 'GET', url: "http://ingsytycc.azurewebsites.net/odata/Accounts?$filter=PartyId ne '56f39c0d889d4f701e04221fc3c0ee9625e2cbac1ff574f712df8fe2957f7859' "})
                     .success(function (data, status, headers, config) {
                         $scope.donner = data.value;
                         console.log($scope.donner);
