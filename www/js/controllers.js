@@ -39,13 +39,10 @@ angular.module('starter.controllers', [])
                 })
             }
             //$scope.connect(); permet de run le mot de passe
-            
+
             $scope.Event = {};
             $scope.events = [];
-            $scope.friends = [
-                {id: 1, lastname: 'Dupont', name: 'Thibaud'},
-                {id: 2, lastname: 'Leclerc', name: 'Arnauld'}
-            ];
+            $scope.friends = [];
 
 
             $scope.refrechFriends = function () {
@@ -72,7 +69,27 @@ angular.module('starter.controllers', [])
             $scope.addEvent = function () {
                 $location.path('/app/addEvent');
             }
+            $scope.MaxEvent = function () {
+                /*$ionicPlatform.ready(function () {*/
+                db.transaction(function (tx) {
+                    tx.executeSql('SELECT * FROM EVENTS WHERE EVENT_ID = (SELECT MAX(EVENT_ID) FROM EVENTS)', [], function (tx, results) {
+                        var len = results.rows.length;
+                        for (var i = 0; i < len; i++) {
+                            $scope.varA = results.rows.item(i).NAME;
+                            $scope.varB = results.rows.item(i).PLACE;
+                            $scope.varC = results.rows.item(i).DESCRIPTION;
+                            $scope.$apply();
+                        }
+                    });
+                })
+            }
+            $scope.sendEvent = function () {
+
+            }
+            $scope.MaxEvent();
+
             $scope.confirmEvent = function () {
+                $scope.insertEvent();
                 $location.path('/app/confirmEvent');
             }
             $scope.eventNotif = function () {
@@ -157,19 +174,19 @@ angular.module('starter.controllers', [])
                     analyzesGender: "true",
                     analyzesSmile: "true",
                 };
- 
+
                 var uploadURI = 'https://api.projectoxford.ai/face/v0/detections?' + $.param(params);
                 var imageURI = imageUri; // the retrieved URI of the file on the file system, e.g. using navigator.camera.getPicture()     
- 
+
                 var options = new FileUploadOptions();
                 options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
                 options.mimeType = "application/octet-stream";
                 // options.headers = {}; // use this if you need additional headers
- 
+
                 var ft = new FileTransfer();
-                ft.upload(imageURI, uploadURI, function(r) {
-                alert(JSON.stringify(r));
-                }, function(error) {
+                ft.upload(imageURI, uploadURI, function (r) {
+                    alert(JSON.stringify(r));
+                }, function (error) {
                     alert("An error has occurred:" + JSON.stringify(error));
                 }, options)
             }

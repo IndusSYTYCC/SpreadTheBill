@@ -13,16 +13,16 @@
 
         <label class="item item-input">
             Name :
-            <input type="text" ng-model="Event.name" placeholder="   event name ..."/>
+            <input type="text" ng-model="Event.name" ng-change="nameChange(Event.name)" placeholder="   event name ..."/>
         </label>  
 
         <label class="item item-input">
             Place : 
-            <input type="text" ng-model="Event.place" placeholder="   event place ..."/>
+            <input type="text" ng-model="Event.place" ng-change="placeChange(Event.place)" placeholder="   event place ..."/>
         </label>
         <label class="item item-input">
             Description : 
-            <input type="text" ng-model="Event.description" placeholder="   event description ..."/>
+            <input type="text" ng-model="Event.description" ng-change="descChange(Event.description)" placeholder="   event description ..."/>
         </label>
         <label class="item item-input">
             Sold :
