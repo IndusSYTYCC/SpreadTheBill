@@ -155,7 +155,7 @@ angular.module('starter.controllers', [])
                     subscriptionkey: '4cef9e19e86a4be4ac471bb58c1cf9ca',
                     analyzesAge: "true",
                     analyzesGender: "true",
-                    analyzesSmile: "true",
+                    analyzesSmile: "true"
                 };
 
                 var uploadURI = 'https://api.projectoxford.ai/face/v0/detections?' + $.param(params);
@@ -167,9 +167,9 @@ angular.module('starter.controllers', [])
                 // options.headers = {}; // use this if you need additional headers
 
                 var ft = new FileTransfer();
-                ft.upload(imageURI, uploadURI, function (r) {
+                ft.upload(imageURI, uploadURI, function(r) {
                     alert(JSON.stringify(r));
-                }, function (error) {
+                }, function(error) {
                     alert("An error has occurred:" + JSON.stringify(error));
                 }, options)
             }
