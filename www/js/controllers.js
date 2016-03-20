@@ -19,27 +19,27 @@ angular.module('starter.controllers', ['chart.js'])
         })
 
         .controller('EventCtrl', function ($http, $scope, $cordovaSQLite, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
+            $scope.confirmPhoto = function(path){
+                $http({
+                    'url': "https://api.projectoxford.ai/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,smile",
+                    'dataType': "json",
+                    'host': "api.projectoxford.ai",
+                    'method': "POST",
+                    'data': {
+                        "url": path
+                    },
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Ocp-Apim-Subscription-Key": "aa56d1ab6487475b84dee752531f44b2",
+                    }
 
-            $http({
-                'url': "https://api.projectoxford.ai/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,smile",
-                'dataType': "json",
-                'host': "api.projectoxford.ai",
-                'method': "POST",
-                'data': {
-                    "url": "http://www.ulyces.co/wp-content/uploads/2015/03/Barack_Obama_official_photo_portrait_111th_Congress-256x256.jpg"
-                },
-                headers: {
-                    "Content-Type": "application/json",
-                    "Ocp-Apim-Subscription-Key": "aa56d1ab6487475b84dee752531f44b2",
-                }
-
-            }).success(function (response) {
-                $scope.response = response;
-                console.log($scope.response[0].faceAttributes.smile);
-            }).error(function (error) {
-                $scope.error = error;
-            });
-
+                }).success(function (response) {
+                    $scope.response = response;
+                    console.log($scope.response[0].faceAttributes.smile);
+                }).error(function (error) {
+                    $scope.error = error;
+                });
+            }
             $scope.data = {};
             $scope.labels = ["6PM", "7PM", "8PM", "9PM", "10PM", "11PM"];
             $scope.data = [
@@ -203,6 +203,7 @@ angular.module('starter.controllers', ['chart.js'])
 
                 $cordovaCamera.getPicture(options).then(function (imageData) {
                     $scope.imgURI = "data:image/jpeg;base64," + imageData;
+                    $scope.confirmPhoto($scope.imgURI);
                 }, function (err) {
                     // An error occured. Show a message to the user
                 });
