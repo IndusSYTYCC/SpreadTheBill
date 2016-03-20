@@ -31,6 +31,10 @@
                 <h2>Make a big smile for confirmation ! :D</h2>
             </div>
         </div>
+        
+        <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" class="img-rounded center-block">
+        <img ng-show="imgURI === undefined" ng-src="img/image_empty.jpg" class="img-rounded center-block">
+        <button class="button nav-bar button-block" ng-click="takePicture()">Take Picture</button>
 
     </ion-content>    
 </ion-view>
