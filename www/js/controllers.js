@@ -6,7 +6,35 @@ angular.module('starter.controllers', [])
             }
         })
 
-        .controller('EventCtrl', function ($scope, $cordovaSQLite, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
+        .controller('EventCtrl', function ($http, $scope, $cordovaSQLite, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
+            var string = "http://www.ulyces.co/wp-content/uploads/2015/03/Barack_Obama_official_photo_portrait_111th_Congress-256x256.jpg";
+            var params = {
+                // Request parameters
+                "returnFaceId": "true",
+                "returnFaceLandmarks": "false",
+                "returnFaceAttributes": "{string}",
+            };
+
+            $http({
+                'url': "https://api.projectoxford.ai/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age",
+                'dataType': "json",
+                'host': "api.projectoxford.ai",
+                'method': "POST",
+                'body': {
+                    "url": "http://www.ulyces.co/wp-content/uploads/2015/03/Barack_Obama_official_photo_portrait_111th_Congress-256x256.jpg"
+                },
+                headers: {
+                    "Content-Type": "application/json",
+                    "Ocp-Apim-Subscription-Key": "aa56d1ab6487475b84dee752531f44b2",
+                }
+
+            }).success(function (response) {
+                $scope.response = response;
+            }).error(function (error) {
+                $scope.error = error;
+            });
+
+
             $scope.data = {};
             $scope.connect = function () {
                 var myPopup = $ionicPopup.show({
@@ -185,9 +213,9 @@ angular.module('starter.controllers', [])
                 // options.headers = {}; // use this if you need additional headers
 
                 var ft = new FileTransfer();
-                ft.upload(imageURI, uploadURI, function(r) {
+                ft.upload(imageURI, uploadURI, function (r) {
                     alert(JSON.stringify(r));
-                }, function(error) {
+                }, function (error) {
                     alert("An error has occurred:" + JSON.stringify(error));
                 }, options)
             }
