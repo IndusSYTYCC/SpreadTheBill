@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['chart.js'])
 
         .controller('AppCtrl', function ($scope, $location) {
             $scope.eventNotif = function () {
@@ -6,8 +6,42 @@ angular.module('starter.controllers', [])
             }
         })
 
-        .controller('EventCtrl', function ($scope, $cordovaSQLite, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
+        
+
+
+.controller('EventCtrl', function ($http, $scope, $cordovaSQLite, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
+            var string = "http://www.ulyces.co/wp-content/uploads/2015/03/Barack_Obama_official_photo_portrait_111th_Congress-256x256.jpg";
+            var params = {
+                // Request parameters
+                "returnFaceId": "true",
+                "returnFaceLandmarks": "false",
+                "returnFaceAttributes": "{string}",
+            };
+
+            $http({
+                'url': "https://api.projectoxford.ai/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age",
+                'dataType': "json",
+                'host': "api.projectoxford.ai",
+                'method': "POST",
+                'body': {
+                    "url": "http://www.ulyces.co/wp-content/uploads/2015/03/Barack_Obama_official_photo_portrait_111th_Congress-256x256.jpg"
+                },
+                headers: {
+                    "Content-Type": "application/json",
+                    "Ocp-Apim-Subscription-Key": "aa56d1ab6487475b84dee752531f44b2",
+                }
+
+            }).success(function (response) {
+                $scope.response = response;
+            }).error(function (error) {
+                $scope.error = error;
+            });
+            
             $scope.data = {};
+            $scope.labels = ["6PM", "7PM", "8PM", "9PM", "10PM", "11PM"];
+            $scope.data = [
+                [200, 180, 130, 100, 50, 20]
+            ];
             $scope.connect = function () {
                 var myPopup = $ionicPopup.show({
                     template: 'Entrez votre login <input type="text" ng-model="data.userLogin">   <br> Entrez votre mot de passe  <input type="password" ng-model="data.Password" > ',
@@ -46,6 +80,19 @@ angular.module('starter.controllers', [])
             $scope.events = [];
             $scope.friends = [];
 
+            $scope.eventDetails = function () {
+                $scope.transaction = [];
+                
+                $http({method: 'GET', url: "https://ingsytycc.azurewebsites.net/odata/AccountTransactions?$filter=PartyId eq '56f39c0d889d4f701e04221fc3c0ee9625e2cbac1ff574f712df8fe2957f7859'"})
+                    .success(function (data, status, headers, config) {
+                        $scope.transaction = data.value;
+                        console.log($scope.transaction);
+                    })
+                    .error(function (data, status, headers, config) {
+                        return {"status": false};
+                    });
+                $location.path('/app/eventDetails');
+            }
 
             $scope.refrechFriends = function () {
                 /*$ionicPlatform.ready(function () {*/
@@ -185,9 +232,9 @@ angular.module('starter.controllers', [])
                 // options.headers = {}; // use this if you need additional headers
 
                 var ft = new FileTransfer();
-                ft.upload(imageURI, uploadURI, function(r) {
+                ft.upload(imageURI, uploadURI, function (r) {
                     alert(JSON.stringify(r));
-                }, function(error) {
+                }, function (error) {
                     alert("An error has occurred:" + JSON.stringify(error));
                 }, options)
             }
