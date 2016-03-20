@@ -78,12 +78,14 @@ angular.module('starter.controllers', [])
                             $scope.varA = results.rows.item(i).NAME;
                             $scope.varB = results.rows.item(i).PLACE;
                             $scope.varC = results.rows.item(i).DESCRIPTION;
+                            $scope.varD = results.rows.item(i).SOLDE;
                             $scope.$apply();
                         }
                     });
                 })
             }
             $scope.sendEvent = function () {
+                $location.path('/app/Event');
 
             }
             $scope.MaxEvent();
@@ -102,7 +104,6 @@ angular.module('starter.controllers', [])
                 $cordovaSQLite.execute(db, query, [$scope.Event.name, $scope.Event.description, $scope.Event.place, 0, 0, $scope.Event.solde]).then(function (res) {
                 }, function (err) {
                 });
-                $location.path('/app/Event');
                 $scope.refrechEvents();
             }
 
