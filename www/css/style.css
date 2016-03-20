@@ -1,32 +1,17 @@
-/* Empty. Add your own CSS if you like */
-.bar.bar-profile {
-          //  background-image:url("img/ionic.png");
-
-    background-color: #FF6600;
-    height: 170px;
-}
-.center {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-.profile{
-        background-image:url("img/ionic.png");
-}
-
-#name{
-    	position: relative;
-        right : 68px;
-        color: white;
-
-}
-.bar .profile {
-   // background-image:url(../img/logo_lion.png);
-      //      background-color: white;
-
+ion-view{
+    background-image:url(../img/lion3.jpg);
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     background-size: 100%;
+    background-repeat: no-repeat;
+    background-color:rgb(212, 86, 1)
+}
+.bar.bar-profile {
+    background-color: #FF6600;
+    height: 170px;
+}
+
+.bar .profile {
     top: 0;
     right: 0;
     left: 0;
@@ -38,7 +23,11 @@
     width: 100%;
     padding-top: 15px;
 }
-
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
 
 .profile .name {
     color: #FFFFFF;
@@ -50,9 +39,18 @@
     border-radius: 50%;
 }
 
+div.bar.bar-header.bar-light{
+    background-color: transparent;
+    border: none;
+}
+
 .menu .has-header
 {
     top: 169px;
+}
+
+.item-complex .item-content, .item-radio .item-content {
+    background-color: transparent;
 }
 
 .nav-bar{
@@ -65,149 +63,23 @@
     background-color:#FF6600;
 }
 
-.center-block {
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.menu_list .item-content, .menu_list .item {
-    background-color:#FA9049;
-    color: white;
-}
-
-.menu_list .item-content:hover, .menu_list .item:hover {
-    //background-color: #FA9049;
-}
-
-.menu_list .item-content:active, .menu_list .item:active {
-        font-size:x-large;
-
-    //background-color: #FF1500;
-    //color: black;
-}
-
-#account_label{
-    //font-family: "Times New Roman", Times, serif;
-    font-size: 20px;
-    background-color: white;
-}
-
-#account_h1{
-    font-weight: bold;
-    font-family: Lobster, "Times New Roman", Times, serif;
-    // text-shadow: 0px 1px 1px white, 5px 5px 10px #FF6600;
-    color: black;
-    border:#000;
-    //text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
-    justify-content: space-between;
-    font-size: 20px;  
-    background-color: white;
-    
-}
-
-#settings_label{
-    //font-family: "Times New Roman", Times, serif;
-    font-size: 20px;
-        background-color : #FF6600;
-
-}
-
-#settings_h1{
-    font-weight: bold;
-    font-size: 20px !important;
-
-    font-family: Lobster, "Times New Roman", Times, serif;
-    // text-shadow: 0px 1px 1px white, 5px 5px 10px #FF6600;
-    color:black;
-    background-color : white;
-    //border:#000;
-    //text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
-    //justify-content: space-between;
-    font-size: 50px;      
-}
-
-#bt_log{
-    color:white; 
-    background-color: wheat;
-
-}
-
-#bt_pass{
-    color:white; 
-    background-color: wheat
-    
-}
-
-#hello {
-    color: black;
-    font-style: italic;
-}
-
-#hello:hover{
-    font-size:xx-large;
-    font-style: oblique;
-}
-
-.bar.bar-light{
-    //background-color:rgb(251,109,0);
-background-color: wheat;
-}
-
-.item-divider{
-    color:black;
-    background-color: wheat;//ici
-    border-color: wheat;
-}
-
-
-.scroll{
-    background-image:url(../img/lion3.jpg);
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-color:rgb(212, 86, 1)
-}
-
-.item-icon-left{
-    //color: white;
+#balance{
     background-color: transparent;
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    background-size: 100%;
-    background-repeat: no-repeat;
-}
-
-.item-text-wrap{
-        font-family: Lobster, "Times New Roman", Times, serif;
-        color: #FA9049;
-}
-
-#ion-content.scroll-content.ionic-scroll.has-header{
-    background-color: #FA9049;
-}
-
-#bar bar-header bar-light{
-    background-color: white;
-}
-
-ion-content.scroll-content.ionic-scroll.has-header{
-    background-image:url(../img/logo_lion.png);
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    background-size: 100%;
-    background-repeat: no-repeat;
-        background-position: center; 
-
-}
-
-#about{
-    background-image:url(../img/logo_lion.png);
-    background-color: white;
-}
-
-#about_id{
-    background-color: white;
+    border: none;
     color: black;
+}
+#balance > i{
+    font-size: 19px;
+}
+
+div.item.item-divider{
+    background-color: wheat;
+}
+
+ion-item.item.item-complex > a, ion-item.item {
+    background-color: #FF6600 !important;
+}
+
+#hello{
+    background-color: wheat;
 }

@@ -12,27 +12,30 @@
     <ion-content>
 
         <label class="item item-input">
-            Name :
+            Name : &nbsp;
             <input type="text" ng-model="Event.name" ng-change="nameChange(Event.name)" placeholder="   event name ..."/>
         </label>  
 
         <label class="item item-input">
-            Place : 
+            Place : &nbsp;
             <input type="text" ng-model="Event.place" ng-change="placeChange(Event.place)" placeholder="   event place ..."/>
         </label>
         <label class="item item-input">
-            Description : 
+            Description : &nbsp;
             <input type="text" ng-model="Event.description" ng-change="descChange(Event.description)" placeholder="   event description ..."/>
         </label>
         <label class="item item-input">
-            Sold :
+            Sold : &nbsp;
             <input type="number" ng-model="Event.solde" value ="0"/>
         </label>
 
         <ion-checkbox ng-model="showFriends">Friends list : </ion-checkbox>
 
         <div ng-show="showFriends">
-        <ion-checkbox  ng-repeat=" myfriend in friends"  name="{{myfriend.id}}" ng-value="{{myfriend.id}}">{{myfriend.lastname}} {{myfriend.name}}</ion-checkbox>
+        <!--<ion-checkbox  ng-repeat=" myfriend in friends"  name="{{myfriend.id}}" ng-value="{{myfriend.id}}">{{myfriend.name}}</ion-checkbox>-->
+        <ion-checkbox> Emmet Brown </ion-checkbox>
+        <ion-checkbox> George Mc Fly </ion-checkbox>
+        <ion-checkbox> Lorraine </ion-checkbox>
         </div>
         
 
