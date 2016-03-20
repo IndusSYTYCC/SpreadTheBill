@@ -21,11 +21,11 @@ angular.module('starter.controllers', ['chart.js'])
         .controller('EventCtrl', function ($http, $scope, $cordovaSQLite, $ionicPopup, $location, $cordovaCamera, $cordovaSQLite, $ionicPlatform) {
 
             $http({
-                'url': "https://api.projectoxford.ai/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age",
+                'url': "https://api.projectoxford.ai/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,smile",
                 'dataType': "json",
                 'host': "api.projectoxford.ai",
                 'method': "POST",
-                'body': {
+                'data': {
                     "url": "http://www.ulyces.co/wp-content/uploads/2015/03/Barack_Obama_official_photo_portrait_111th_Congress-256x256.jpg"
                 },
                 headers: {
@@ -35,6 +35,7 @@ angular.module('starter.controllers', ['chart.js'])
 
             }).success(function (response) {
                 $scope.response = response;
+                console.log($scope.response[0].faceAttributes.smile);
             }).error(function (error) {
                 $scope.error = error;
             });
